@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./search.css";
-// import API from "../utils/API";
+// import API from "../../utils/API";
 // import SearchBtn from "../Search/SearchBtn";
 
 
@@ -27,22 +27,47 @@ class Search extends Component {
         super(props);
 
         this.state = {
-            airline: "",
-            flight: ""
+            iacoCode: "",
+            iataCode: "",
+            flightNumber: ""
           };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
+
+        if (this.state.iacoCode === "AAL") {
+            this.setState({ iataCode: "AA" })
+        } else if (this.state.iacoCode === "BAW") {
+            this.setState({ iataCode: "BA" })
+        } else if (this.state.iacoCode === "CPA") {
+            this.setState({ iataCode: "CX" })
+        } else if (this.state.iacoCode === "ETD") {
+            this.setState({ iataCode: "EY" })
+        } else if (this.state.iacoCode === "HAL") {
+            this.setState({ iataCode: "HA" })
+        } else if (this.state.iacoCode === "QFA") {
+            this.setState({ iataCode: "QF" })
+        } else if (this.state.iacoCode === "QAF") {
+            this.setState({ iataCode: "QR" })
+        } else if (this.state.iacoCode === "UAL") {
+            this.setState({ iataCode: "UA" })
+        } else if (this.state.iacoCode === "VIR") {
+            this.setState({ iataCode: "VS" })
+        } else if (this.state.iacoCode === "VOZ") {
+            this.setState({ iataCode: "VA" })
+        };
+
         console.log(event.target.value);
 
     }
 
     handleSubmit(event) {
-        alert("airline: " + this.state.airline + " | flight: " + this.state.flight);
+        alert("IACO: " + this.state.iacoCode + " | IATA: " + this.state.iataCode + " | Flight Number: " + this.state.flightNumber);
         event.preventDefault();
     }
 
@@ -56,7 +81,7 @@ class Search extends Component {
                         <h4>Search for a flight</h4>
                         <div className="form-group">
                             <label htmlFor="selectAirline">Select Airline</label>
-                            <select className="form-control" id="select-airline" name="airline" value={this.state.value} onChange={this.handleChange}>
+                            <select className="form-control" id="select-airline" name="iacoCode" value={this.state.value} onChange={this.handleChange}>
                                 <option value="" defaultValue>----------------</option>
                                 <option value="AAL">American Airlines - AA</option>
                                 <option value="BAW">British Airways - BA</option>
@@ -73,7 +98,7 @@ class Search extends Component {
 
                         <div className="form-group">
                             <label htmlFor="flightNumber">Flight Number</label>
-                            <input type="text" className="form-control" id="flight-number" placeholder="----------------" name="flight" onChange={this.handleChange} />
+                            <input type="text" className="form-control" id="flight-number" placeholder="----------------" name="flightNumber" onChange={this.handleChange} />
                         </div>
 
                         {/* <a className="btn btn-secondary" href="/results" role="button" type="submit">Submit</a> */}
