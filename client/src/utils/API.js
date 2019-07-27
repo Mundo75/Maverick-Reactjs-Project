@@ -1,19 +1,19 @@
 import axios from "axios";
 
-const iataCode = dl;
-const flightNumber = 9925;
+// const iataCode = dl;
+// const flightNumber = 9925;
 
 export default {
   // Gets Flight Information
-  getFlightInfo: function(airline, flight) {
-    return axios.post("/api/flights" + iataCode + flightNumber);
+  getFlightInfo: function(iataCode, flightNumber) {
+    return axios.post("/api/parameters" + iataCode + flightNumber);
   },
-  // // Gets Medical Kit Contents
-  // getMedContent: function(id) {
-  //   return axios.get("/api/kit/" + id);
-  // },
-  // // Gets Treatment Procedures
-  // getProcedure: function(id) {
-  //   return axios.get("/api/procedure/" + id);
-  // }
+  // Gets Medical Kit Contents
+  getKitInfo: function(id) {
+    return axios.get("/api/kits/" + id);
+  },
+  // Gets Treatment Procedures
+  getOpsInfo: function(id) {
+    return axios.get("/api/ops" + id);
+  }
 };
