@@ -1,4 +1,5 @@
 const searchFlights = require("../../components/avAPI.js");
+const connection = require("../../config/connection");
 
 module.exports = function(app) {
 
@@ -25,10 +26,10 @@ module.exports = function(app) {
     }); 
 
     app.get("/api/kits", (req, res) => {
-        let query = "SELECT * FROM flightKit WHERE icao_code=?";
-        connection.query(query, ["BAW"], function(error, result) {
+        let kitQuery = "SELECT * FROM flightKit WHERE icao_code=?";
+        connection.query(kitQuery, ["BAW"], function(error, result) {
             if(error) {
-                return res.send(err)
+                return res.send(error)
 
             } else {
                 return res.json({
@@ -41,4 +42,18 @@ module.exports = function(app) {
         
         });
     });
+
+    app.get("/api/ops", (req, res) => {
+        let opsQuery = "SELECT * FROM OpsProcedures WHERE icao_code=?";
+        connection.query(opsQuery, ["BAW"], function(error, result) {
+            if(error) {
+                return res.send(error)
+
+            } else {
+                return res.json({
+                    data: result
+                });
+            };
+        });
+    });        
 };
