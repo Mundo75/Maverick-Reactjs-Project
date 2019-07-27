@@ -1,36 +1,21 @@
 import React, { Component } from 'react';
 import "./search.css";
-// import API from "../../utils/API";
+import { Redirect } from 'react-router-dom'
+import API from "../../utils/API";
 // import SearchBtn from "../Search/SearchBtn";
 
 
 class Search extends Component {
 
-    // state = {
-    //     airline: "",
-    //     flight: ""
-    //   };
-
-    // handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     if (this.state.airline && this.state.flight) {
-    //       API.getFlightInfo({
-    //         airline: this.state.airline,
-    //         flight: this.state.flight
-    //       })
-    //         .then(res => this.loadInfo())
-    //         .catch(err => console.log(err));
-    //     }
-    //   };
-
     constructor(props) {
         super(props);
 
         this.state = {
-            iacoCode: "",
+            icaoCode: "",
             iataCode: "",
-            flightNumber: ""
-          };
+            flightNumber: "",
+            redirectToReferrer: false
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,25 +25,25 @@ class Search extends Component {
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
 
-        if (this.state.iacoCode === "AAL") {
+        if (this.state.icaoCode === "AAL") {
             this.setState({ iataCode: "AA" })
-        } else if (this.state.iacoCode === "BAW") {
+        } else if (this.state.icaoCode === "BAW") {
             this.setState({ iataCode: "BA" })
-        } else if (this.state.iacoCode === "CPA") {
+        } else if (this.state.icaoCode === "CPA") {
             this.setState({ iataCode: "CX" })
-        } else if (this.state.iacoCode === "ETD") {
+        } else if (this.state.icaoCode === "ETD") {
             this.setState({ iataCode: "EY" })
-        } else if (this.state.iacoCode === "HAL") {
+        } else if (this.state.icaoCode === "HAL") {
             this.setState({ iataCode: "HA" })
-        } else if (this.state.iacoCode === "QFA") {
+        } else if (this.state.icaoCode === "QFA") {
             this.setState({ iataCode: "QF" })
-        } else if (this.state.iacoCode === "QAF") {
+        } else if (this.state.icaoCode === "QAF") {
             this.setState({ iataCode: "QR" })
-        } else if (this.state.iacoCode === "UAL") {
+        } else if (this.state.icaoCode === "UAL") {
             this.setState({ iataCode: "UA" })
-        } else if (this.state.iacoCode === "VIR") {
+        } else if (this.state.icaoCode === "VIR") {
             this.setState({ iataCode: "VS" })
-        } else if (this.state.iacoCode === "VOZ") {
+        } else if (this.state.icaoCode === "VOZ") {
             this.setState({ iataCode: "VA" })
         };
 
@@ -66,12 +51,42 @@ class Search extends Component {
 
     }
 
-    handleSubmit(event) {
-        alert("IACO: " + this.state.iacoCode + " | IATA: " + this.state.iataCode + " | Flight Number: " + this.state.flightNumber);
+    // handleSubmit(event) {
+    //     alert("icao: " + this.state.icaoCode + " | IATA: " + this.state.iataCode + " | Flight Number: " + this.state.flightNumber);
+    //     event.preventDefault();
+    // }
+
+    handleSubmit = event => {
         event.preventDefault();
-    }
+        if (this.state.icaoCode && this.state.iataCode && this.state.flightNumber) {
+            API.getFlightInfo({
+                icaoCode: this.state.icaoCode,
+                iataCode: this.state.iataCode,
+                flightNumber: this.state.flightNumber
+            })
+                .then(
+                    this.setState({ redirectToReferrer: true })
+                )
+                .catch(err => console.log(err));
+        }
+    };
 
     render() {
+
+        const redirectToReferrer = this.state.redirectToReferrer;
+        if (redirectToReferrer === true) {
+            return <Redirect
+                to={{
+                    pathname: "/results",
+                    state: {
+                        icaoCode: this.state.icaoCode,
+                        iataCode: this.state.iataCode,
+                        flightNumber: this.state.flightNumber
+                    }
+                }}
+            />
+        }
+
         return (
             <div className="container">
 
@@ -81,7 +96,7 @@ class Search extends Component {
                         <h4>Search for a flight</h4>
                         <div className="form-group">
                             <label htmlFor="selectAirline">Select Airline</label>
-                            <select className="form-control" id="select-airline" name="iacoCode" value={this.state.value} onChange={this.handleChange}>
+                            <select className="form-control" id="select-airline" name="icaoCode" value={this.state.value} onChange={this.handleChange}>
                                 <option value="" defaultValue>----------------</option>
                                 <option value="AAL">American Airlines - AA</option>
                                 <option value="BAW">British Airways - BA</option>
@@ -103,7 +118,7 @@ class Search extends Component {
 
                         {/* <a className="btn btn-secondary" href="/results" role="button" type="submit">Submit</a> */}
                         {/* <a href="/results"> */}
-                            <button className="btn btn-secondary" type="submit">Submit</button>
+                        <button className="btn btn-secondary" type="submit">Submit</button>
                         {/* </a> */}
 
                     </form>
