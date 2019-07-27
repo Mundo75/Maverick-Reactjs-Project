@@ -1,13 +1,13 @@
 const path = require("path");
 const router = require("express").Router();
 
-// const apiRoutes = require("./api/routes-API");
+const apiRoutes = require("./api/routes-API");
 
-// router.use("/api", apiRoutes);
+router.use("/api", apiRoutes);
 
 router.use(function(req, res) {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 
 });
 
-module.exports =router;
+module.exports = router;
