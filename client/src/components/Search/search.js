@@ -57,6 +57,11 @@ class Search extends Component {
     // }
 
     handleSubmit = event => {
+        let flightInfo = {
+            icaoCode: this.state.icaoCode,
+            iataCode: this.state.iataCode,
+            flightNumber: this.state.flightNumber
+        }
         event.preventDefault();
         if (this.state.icaoCode && this.state.iataCode && this.state.flightNumber) {
             API.getFlightInfo({
@@ -69,6 +74,8 @@ class Search extends Component {
                 )
                 .catch(err => console.log(err));
         }
+        let url = "https://flightaware.com/live/flight/" + flightInfo.icaoCode + flightInfo.flightNumber;
+        window.open(url,'_blank','height=600,width=600');    
     };
 
     render() {
