@@ -130,7 +130,7 @@ class Search extends Component {
                     
                 </div>
                 <div>
-                <a className="demo" href="javascript:window.open('https://www.youtube.com/watch?v=KQA5ihzNnZQ', '_blank', 'height=600,width=400');" type="button">DEMONSTRATION</a>"
+               
                     </div>
             </div>
         );
