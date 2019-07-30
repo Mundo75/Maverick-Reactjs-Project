@@ -77,7 +77,7 @@ class Search extends Component {
     };
 
     render() {
-
+        
         const redirectToReferrer = this.state.redirectToReferrer;
         if (redirectToReferrer === true) {
             return <Redirect
@@ -127,9 +127,11 @@ class Search extends Component {
                         {/* </a> */}
 
                     </form>
-
+                    
                 </div>
-
+                <div>
+               
+                    </div>
             </div>
         );
 

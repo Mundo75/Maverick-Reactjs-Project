@@ -74,7 +74,7 @@ class Results extends Component {
     
     render() {
         // let filteredKit = this.state.kitList.filter((data) => {
-        //     return data.icao_code.indexOF("AAL") !== -1;
+        //     return data.data.icao_code.indexOF(this.props.location.state.icaoCode) !== -1;
         // });
         return (
             <div className="App">
