@@ -9,9 +9,14 @@ export default {
     return axios.post("/api/parameters" + iataCode + flightNumber);
   },
   // Gets Medical Kit Contents
-  getKitInfo: function(id) {
-    return axios.get("/api/kits/" + id);
+  getKitInfo: function(param) {
+    console.log("TEST: " + param)
+    return axios.post("http://localhost:3001/api/kits/", param);
+
+    
   },
+ 
+
   // Gets Treatment Procedures
   getOpsInfo: function(id) {
     return axios.get("/api/ops" + id);

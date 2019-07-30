@@ -1,13 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const routes = require("./routes");
+const cors = require('cors')
 require("./config/connection")
-// const apiKey = process.env.API_KEY;
-// console.log(apiKey);
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 if (process.env.NODE_ENV === "production") {

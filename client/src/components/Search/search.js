@@ -19,8 +19,10 @@ class Search extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        
     }
+
+   
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -64,11 +66,7 @@ class Search extends Component {
         }
         event.preventDefault();
         if (this.state.icaoCode && this.state.iataCode && this.state.flightNumber) {
-            API.getFlightInfo({
-                icaoCode: this.state.icaoCode,
-                iataCode: this.state.iataCode,
-                flightNumber: this.state.flightNumber
-            })
+            API.getKitInfo(flightInfo.icaoCode)   
                 .then(
                     this.setState({ redirectToReferrer: true })
                 )

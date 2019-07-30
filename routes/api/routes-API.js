@@ -30,7 +30,7 @@ const router = require("express").Router();
         }); 
 
     router.route("/kits")
-        .get((req, res) => {
+        .get(function(req, res) {
             let kitQuery = "SELECT * FROM flightKit WHERE icao_code=?";
             connection.query(kitQuery, ["BAW"], function(error, result) {
                 if(error) {
@@ -50,8 +50,8 @@ const router = require("express").Router();
 
     router.route("/ops")
         .get((req, res) => {
-            let opsQuery = "SELECT * FROM OpsProcedures WHERE icao_code=?";
-            connection.query(opsQuery, ["BAW"], function(error, result) {
+            let opsQuery = "SELECT * FROM OpsProcedures";
+            connection.query(opsQuery, function(error, result) {
                 if(error) {
                     return res.send(error)
 
