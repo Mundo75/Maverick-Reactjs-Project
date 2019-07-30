@@ -11,7 +11,7 @@ export default {
   // Gets Medical Kit Contents
   getKitInfo: function(param) {
     console.log("TEST: " + param)
-    return axios.post("http://localhost:3001/api/kits/", param);
+    return axios.post("api/kits/", param);
 
     
   },
