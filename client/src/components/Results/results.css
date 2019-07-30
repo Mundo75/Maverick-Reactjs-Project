@@ -15,3 +15,10 @@ body {
     margin-bottom: 20px;
     margin-top: 20%;
 }
+
+.list-group-item {
+    Color: black;
+    font-weight: bold;
+    text-align: left;
+    margin-right: 30px;
+}

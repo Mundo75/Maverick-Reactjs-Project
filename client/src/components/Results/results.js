@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./results.css";
 
 
+
 class Results extends Component {
 
 
@@ -47,7 +48,7 @@ class Results extends Component {
             .catch(error => {
                 this.setState({ error });
             })
-
+        
 
     }
 
@@ -67,18 +68,16 @@ class Results extends Component {
                         </div>
 
                         <div className="col">
+                            <h3 className="medKit">Medical Kit Contents</h3>
                             {this.state.kitList.map((data) => (
-                                <ul>
-                                    <li key={data.id} id={data.id}>{"AIRLINE: " + data.airline_name}</li>
-                                    <li key={data.id} id={data.id}>{"IATA CODE: " + data.iata_code}</li>
-                                    <li key={data.id} id={data.id}>{"ICAO CODE: " + data.icao_code}</li>
-                                    <li key={data.id} id={data.id}>{"THERAPEUTIC CATEGORY: " + data.therapeutic_category}</li>
-                                    <li key={data.id} id={data.id}>{"MEDICATION NAME GENERIC: " + data.generic_name}</li>
-                                    <li key={data.id} id={data.id}>{"SIZE / STRENGTH: " + data.size_strength}</li>
-                                    <li key={data.id} id={data.id}>{"FORM / TYPE: " + data.form_type}</li>
-                                    <li key={data.id} id={data.id}>{"UNIT: " + data.unit}</li>
-                                    <li key={data.id} id={data.id}>{"qty: " + data.qty}</li>
-                                    <li key={data.id} id={data.id}>{"LOCATION: " + data.location}</li>
+                                <ul key={data.id}>
+                                    <li className="list-group-item" key="a1" id={data.id}>{"THERAPEUTIC CATEGORY: " + data.therapeutic_category}</li>
+                                    <li className="list-group-item" key="a2" id={data.id}>{"MEDICATION NAME GENERIC: " + data.generic_name}</li>
+                                    <li className="list-group-item" key="a3" id={data.id}>{"SIZE / STRENGTH: " + data.size_strength}</li>
+                                    <li className="list-group-item" key="a4" id={data.id}>{"FORM / TYPE: " + data.form_type}</li>
+                                    <li className="list-group-item" key="a5" id={data.id}>{"UNIT: " + data.unit}</li>
+                                    <li className="list-group-item" key="a6" id={data.id}>{"qty: " + data.qty}</li>
+                                    <li className="list-group-item" key="a7" id={data.id}>{"LOCATION: " + data.location}</li>
 
                                 </ul>
                             ))
@@ -87,24 +86,22 @@ class Results extends Component {
 
                         <div className="col">
 
-
+                            <h3 className="medKit">Ops Procedure</h3>
                             {this.state.opsList.map((data) => (
-                                <ul>
-                                    <li key={data.id} id={data.id}>{"AIRLINE: " + data.airline_name}</li>
-                                    <li key={data.id} id={data.id}>{"IATA CODE: " + data.iata_code}</li>
-                                    <li key={data.id} id={data.id}>{"ICAO CODE: " + data.icao_code}</li>
-                                    <li key={data.id} id={data.id}>{"CALL SIGN: " + data.call_sign}</li>
-                                    <li key={data.id} id={data.id}>{"HEADQUARTERS: " + data.headquarters}</li>
-                                    <li key={data.id} id={data.id}>{"PRIMARY SOC CONTACT: " + data.soc_contact1}</li>
-                                    <li key={data.id} id={data.id}>{"SECONDARY SOC CONTACT: " + data.soc_contact2}</li>
-                                    <li key={data.id} id={data.id}>{"BACK-UP SOC CONTACT: " + data.soc_contact3}</li>
-                                    <li key={data.id} id={data.id}>{"EMS NOTIFICATION REQUIRED: " + data.ems_noc}</li>
-                                    <li key={data.id} id={data.id}>{"CASE SUMMARY REQUIRED: " + data.case_summary}</li>
-                                    <li key={data.id} id={data.id}>{"HF RADIO: " + data.hf}</li>
-                                    <li key={data.id} id={data.id}>{"SATCOM: " + data.satcom}</li>
-                                    <li key={data.id} id={data.id}>{"ACARS: " + data.acars}</li>
-                                    <li key={data.id} id={data.id}>{"TEMPUS: " + data.tele_med}</li>
-                                    <li key={data.id} id={data.id}>{"SPECIAL EMS PROTOCOL: " + data.ems}</li>
+                                <ul key={data.id}>
+                                                                       
+                                    <li className="list-group-item" key="b1" id={data.id}>{"CALL SIGN: " + data.call_sign}</li>
+                                    <li className="list-group-item" key="b2" id={data.id}>{"HEADQUARTERS: " + data.headquarters}</li>
+                                    <li className="list-group-item" key="b3" id={data.id}>{"PRIMARY SOC CONTACT: " + data.soc_contact1}</li>
+                                    <li className="list-group-item" key="b4" id={data.id}>{"SECONDARY SOC CONTACT: " + data.soc_contact2}</li>
+                                    <li className="list-group-item" key="b5" id={data.id}>{"BACK-UP SOC CONTACT: " + data.soc_contact3}</li>
+                                    <li className="list-group-item" key="b6" id={data.id}>{"EMS NOTIFICATION REQUIRED: " + data.ems_noc}</li>
+                                    <li className="list-group-item" key="b7" id={data.id}>{"CASE SUMMARY REQUIRED: " + data.case_summary}</li>
+                                    <li className="list-group-item" key="b8" id={data.id}>{"HF RADIO: " + data.hf}</li>
+                                    <li className="list-group-item" key="b9" id={data.id}>{"SATCOM: " + data.satcom}</li>
+                                    <li className="list-group-item" key="b10" id={data.id}>{"ACARS: " + data.acars}</li>
+                                    <li className="list-group-item" key="b11" id={data.id}>{"TEMPUS: " + data.tele_med}</li>
+                                    <li className="list-group-item" key="b12" id={data.id}>{"SPECIAL EMS PROTOCOL: " + data.ems}</li>
                                 </ul>
                             ))
                             }
