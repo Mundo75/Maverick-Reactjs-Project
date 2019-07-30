@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./search.css";
 import { Redirect } from 'react-router-dom'
-import API from "../../utils/API";
+// import API from "../../utils/API";
 // import SearchBtn from "../Search/SearchBtn";
 
 
@@ -58,17 +58,18 @@ class Search extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        if (this.state.icaoCode && this.state.iataCode && this.state.flightNumber) {
-            API.getFlightInfo({
-                icaoCode: this.state.icaoCode,
-                iataCode: this.state.iataCode,
-                flightNumber: this.state.flightNumber
-            })
-                .then(
-                    this.setState({ redirectToReferrer: true })
-                )
-                .catch(err => console.log(err));
-        }
+        this.setState({ redirectToReferrer: true })
+        // if (this.state.icaoCode && this.state.iataCode && this.state.flightNumber) {
+        //     API.getFlightInfo({
+        //         icaoCode: this.state.icaoCode,
+        //         iataCode: this.state.iataCode,
+        //         flightNumber: this.state.flightNumber
+        //     })
+        //         .then(
+        //             this.setState({ redirectToReferrer: true })
+        //         )
+        //         .catch(err => console.log(err));
+        // }
     };
 
     render() {
