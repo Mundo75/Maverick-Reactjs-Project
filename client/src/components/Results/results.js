@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import "./results.css";
 
 
+const apiKey = "93876d-57443b";
+// const axios = require("axios");
+
 
 class Results extends Component {
 
@@ -14,8 +17,10 @@ class Results extends Component {
             flightNumber: this.props.location.state.flightNumber,
             opsList: [],
             kitList: [],
+            infoList: [],
             error: null
         }
+        console.log("TEST: " + this.props.location.state.icaoCode)
         // this.componentDidMount = this.componentDidMount.bind(this);
     }
 
@@ -29,6 +34,11 @@ class Results extends Component {
         console.log(data);
         this.setState({ kitList: data.data })
 
+    }
+
+    buildInfoList = (data) => {
+        console.log(data);
+        this.setState({ infoList: data})
     }
 
 
@@ -48,14 +58,24 @@ class Results extends Component {
             .catch(error => {
                 this.setState({ error });
             })
-        
 
+            fetch("http://aviation-edge.com/v2/public/flights?key=" + apiKey + "&flightIcao=" + this.props.location.state.icaoCode + this.props.location.state.flightNumber)
+                .then(response => response.json())
+                .then(this.buildInfoList)
+                .catch(error => {
+                    this.setState({ error })
+            })
+                
     }
 
-    
+
+
         
     
     render() {
+        // let filteredKit = this.state.kitList.filter((data) => {
+        //     return data.icao_code.indexOF("AAL") !== -1;
+        // });
         return (
             <div className="App">
 
@@ -64,7 +84,22 @@ class Results extends Component {
                     <div className="row">
 
                         <div className="col">
-                            Flight Information
+                        <h3 className="medKit">Flight Details</h3>
+                        {this.state.infoList.map((data) => (
+                                <ul key={data.id}>
+                                    <li className="list-group-item" key="c5" id={data.id}>{"FLIGHT NUMBER: " + data.flight.iataNumber}</li>
+                                    <li className="list-group-item" key="c1" id={data.id}>{"TAIL NUMBER: " + data.aircraft.regNumber}</li>
+                                    <li className="list-group-item" key="c2" id={data.id}>{"AIRCRAFT TYPE: " + data.aircraft.icaoCode}</li>
+                                    <li className="list-group-item" key="c3" id={data.id}>{"DEPARTURE: " + data.departure.icaoCode}</li>
+                                    <li className="list-group-item" key="c4" id={data.id}>{"ARRIVAL: " + data.arrival.icaoCode}</li>
+                                    <li className="list-group-item" key="c6" id={data.id}>{"LATITUDE: " + data.geography.latitude}</li>
+                                    <li className="list-group-item" key="c7" id={data.id}>{"LONGITUDE: " + data.geography.longitude}</li>
+                                    <li className="list-group-item" key="c7" id={data.id}>{"ALTITUDE: " + data.geography.altitude}</li>
+                                    <li className="list-group-item" key="c7" id={data.id}>{"HEADING: " + data.geography.direction}</li>
+
+                                </ul>
+                            ))
+                            }
                         </div>
 
                         <div className="col">

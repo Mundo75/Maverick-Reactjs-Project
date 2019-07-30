@@ -39,7 +39,7 @@ class Search extends Component {
             this.setState({ iataCode: "HA" })
         } else if (this.state.icaoCode === "QFA") {
             this.setState({ iataCode: "QF" })
-        } else if (this.state.icaoCode === "QAF") {
+        } else if (this.state.icaoCode === "QTR") {
             this.setState({ iataCode: "QR" })
         } else if (this.state.icaoCode === "UAL") {
             this.setState({ iataCode: "UA" })
@@ -109,7 +109,7 @@ class Search extends Component {
                                 <option value="ETD">Etihad Airways - EY</option>
                                 <option value="HAL">Hawaiian Airlines - HA</option>
                                 <option value="QFA">Qantas - QF</option>
-                                <option value="QAF">Qatar Airways - QR</option>
+                                <option value="QTR">Qatar Airways - QR</option>
                                 <option value="UAL">United Airlines - UA</option>
                                 <option value="VIR">Virgin Atlantic Airways - VS</option>
                                 <option value="VOZ">Virgin Australia - VA</option>
