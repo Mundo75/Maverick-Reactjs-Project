@@ -43,7 +43,7 @@ class Results extends Component {
 
 
     componentDidMount() {
-        let url1 = "http://localhost:3001/api/ops"
+        let url1 = "/api/ops"
         fetch(url1)
             .then(response => response.json())
             .then(this.buildOpsList)
@@ -51,7 +51,7 @@ class Results extends Component {
                 this.setState({ error });
             })
         
-        let url2 = "http://localhost:3001/api/kits"
+        let url2 = "/api/kits"
         fetch(url2)
             .then(response => response.json())
             .then(this.buildKitList)
