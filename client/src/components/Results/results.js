@@ -82,7 +82,7 @@ class Results extends Component {
                 <div className="container">
 
                     <div className="row">
-
+                    <a className="return" href="/search">← Back to search</a>
                         <div className="col">
                         <h3 className="medKit">Flight Details</h3>
                         {this.state.infoList.map((data) => (
@@ -103,9 +103,9 @@ class Results extends Component {
                         </div>
 
                         <div className="col">
-                            <h3 className="medKit">Medical Kit Contents</h3>
+                            <h3 className="kit">Medical Kit Contents</h3>
                             {this.state.kitList.map((data) => (
-                                <ul key={data.id}>
+                                <ul className="kitDiv" key={data.id}>
                                     <li className="list-group-item" key="a1" id={data.id}>{"THERAPEUTIC CATEGORY: " + data.therapeutic_category}</li>
                                     <li className="list-group-item" key="a2" id={data.id}>{"MEDICATION NAME GENERIC: " + data.generic_name}</li>
                                     <li className="list-group-item" key="a3" id={data.id}>{"SIZE / STRENGTH: " + data.size_strength}</li>
