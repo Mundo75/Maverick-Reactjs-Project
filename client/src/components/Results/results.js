@@ -59,7 +59,7 @@ class Results extends Component {
                 this.setState({ error });
             })
 
-            fetch("http://aviation-edge.com/v2/public/flights?key=" + apiKey + "&flightIcao=" + this.props.location.state.icaoCode + this.props.location.state.flightNumber)
+            fetch("https://aviation-edge.com/v2/public/flights?key=" + apiKey + "&flightIcao=" + this.props.location.state.icaoCode + this.props.location.state.flightNumber)
                 .then(response => response.json())
                 .then(this.buildInfoList)
                 .catch(error => {
